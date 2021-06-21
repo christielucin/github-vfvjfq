@@ -1,0 +1,32 @@
+<mat-card class="dashboard-card">
+  <mat-card-header>
+    <mat-card-title>
+      {{ tableOrder.table.name }}
+    </mat-card-title>
+    <mat-card-subtitle>Seats {{ tableOrder.table.capacity }} people</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="dashboard-card-content">
+    <ng-container *ngIf="!tableOrder.isOpen">
+      <div>(Unoccupied)</div>
+    </ng-container>
+    <ng-container *ngIf="tableOrder.isOpen">
+      <mat-icon>group</mat-icon>
+      <!-- <div>{{ tableOrder.order?.persons || 0 }} seated</div> -->
+    </ng-container>
+  </mat-card-content>
+  <mat-card-actions>
+    <ng-container *ngIf="!tableOrder.isOpen">
+      <div>
+        <button mat-button color="primary" class="table-order-button" (click)="openTable()">Open</button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="tableOrder.isOpen">
+      <div>
+        <button mat-button color="warning" (click)="closeTable()">Close</button>
+        <button mat-button color="primary" class="table-order-button" (click)="captureOrder()">
+          <mat-icon>restaurant</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+  </mat-card-actions>
+</mat-card>
